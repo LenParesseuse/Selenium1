@@ -15,14 +15,13 @@ public class TestCase04 extends TestBase {
 
     @Test(dataProvider = "readData",description = "User is redirected to Book ticket page after login")
     public void TC04(Object[]data) {
-        Log.info("TC04-Read data");
-        String username=data[0].toString();
-        String password=data[1].toString();
         Log.info("TC04-Go to tab Book ticket");
         homePage.clickOnTabBookTicket();
         Log.info("TC04-Login");
+        String username=data[0].toString();
+        String password=data[1].toString();
         loginPage.logIn(username,password);
-        Log.info("TC04-Verify current page");
+        Log.info("TC04-Verify current page is Book ticket page");
         String currentPage = page.getTextPageHeader();
         Assert.assertEquals(currentPage, "Book ticket", "User is directed to " + currentPage);
     }

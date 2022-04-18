@@ -6,6 +6,7 @@ public class Constant {
     public static WebDriver DRIVER;
     public static String BROWSER = "";
     public static final String HOMEPAGEURL = "http://www.raillog.somee.com/Page/HomePage.cshtml";
-    public static final String VALID_USERNAME = "lenlen0910@gmail.com";
-    public static final String VALID_PASSWORD = "123456789";
+    public static final int MEDIUM_WAIT = 10;
+    public static final int SHORT_WAIT = 3;
+    public static final int SHORT_SLEEP = 2000;
 }

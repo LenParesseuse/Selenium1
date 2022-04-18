@@ -2,7 +2,6 @@ package PageObjects;
 
 import Common.Constant;
 import Common.Log;
-import Common.WebdriverUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -46,7 +45,7 @@ public class TicketPricePage extends BasePage {
             for (int i = 0; i < a.length; i++) {
                 Log.info(a[i]+"-----"+b[i]);
                 if (!a[i].equals(b[i])){
-                    Log.error("Price of seat type "+String.valueOf(i+1)+" is wrong");
+                    Log.error("Price of seat type "+(i+1)+" is wrong");
                     result=false;}
             }
             }

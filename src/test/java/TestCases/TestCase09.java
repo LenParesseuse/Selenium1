@@ -13,18 +13,18 @@ public class TestCase09 extends TestBase {
 
     @Test(dataProvider = "readData",description = "User cannot change password when New Password and Confirm Password are different")
     public void TC09(Object[]data) {
-        Log.info("TC09-Read data");
+        Log.info("TC09-Go to Login page");
+        homePage.clickOnTabLogin();
+        Log.info("TC09-Login");
         String username=data[0].toString();
         String password=data[1].toString();
-        String newPassword=data[2].toString();
-        String confirmNewPass=data[3].toString();
-        Log.info("TC09-Login");
-        homePage.clickOnTabLogin();
         loginPage.logIn(username, password);
         Log.info("TC09-Change password");
         homePage.clickOnTabChangePassword();
+        String newPassword=data[2].toString();
+        String confirmNewPass=data[3].toString();
         changePasswordPage.changePassword(password, newPassword, confirmNewPass);
-        //Verify error message
+        Log.info("TC09-Verify error message");
         String expectedErrorMessage = "Password change failed. Please correct the errors and try again.";
         Assert.assertEquals(changePasswordPage.getTextMessageError(), expectedErrorMessage, "Message not match");
     }

@@ -17,19 +17,20 @@ public class TestCase06 extends TestBase {
 
     @Test(dataProvider = "readData", description = "User is redirected to Home page after logging out from tab Contact")
     public void TC06(Object[] data) {
-        Log.info("TC06-Read data");
+        Log.info("TC06-Go to Login Page");
+        homePage.clickOnTabLogin();
+        Log.info("TC06-Login");
         String username = data[0].toString();
         String password = data[1].toString();
-        homePage.clickOnTabLogin();
         loginPage.logIn(username, password);
         Log.info("TC06-Go to tab Contact");
         homePage.clickOnTabContact();
-        Log.info("Logout from Contact Page");
+        Log.info("TC06-Logout from Contact Page");
         contactPage.clickOnTabLogOut();
-        //Verify whether current page is Homepage
+        Log.info("TC06-Verify whether current page is Homepage");
         String currentUrl = WebdriverUtils.getUrlOfPage();
         Assert.assertEquals(currentUrl, Constant.HOMEPAGEURL, "Current url is not Homepage url.");
-        //Find tab Logout
+        Log.info("TC06-Find tab Logout");
         Assert.assertFalse(homePage.findTabLogOut(), "Tab Log out still exists");
     }
 }

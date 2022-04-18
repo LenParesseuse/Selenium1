@@ -1,6 +1,7 @@
 package PageObjects;
 
 import Common.Constant;
+import Common.Log;
 import Common.WebdriverUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -36,42 +37,39 @@ public class BookTicketPage extends BasePage{
      * */
     public void selectDepartDate(String departDate){
         WebdriverUtils.scrollDowntoElement(getBoxDepartDate());
-        getBoxDepartDate().click();
         Select selectDate= new Select(getBoxDepartDate());
         selectDate.selectByVisibleText(departDate);
     }
     public void selectDepartStation(String departStation){
         WebdriverUtils.scrollDowntoElement(getBoxDepartFrom());
-        getBoxDepartFrom().click();
         Select selectDepart= new Select(getBoxDepartFrom());
         selectDepart.selectByVisibleText(departStation);
     }
     public void selectArriveStation(String arrStation){
         WebdriverUtils.scrollDowntoElement(getBoxArriveAt());
-        getBoxArriveAt().click();
         Select selectArr= new Select(getBoxArriveAt());
         selectArr.selectByVisibleText(arrStation);
     }
     public void selectSeatType(String seat){
         WebdriverUtils.scrollDowntoElement(getBoxSeatType());
-        getBoxSeatType().click();
         Select selectSeattype= new Select(getBoxSeatType());
         selectSeattype.selectByVisibleText(seat);
     }
     public void selectTicketAmount(String amount){
         WebdriverUtils.scrollDowntoElement(getBoxTicketAmount());
-        getBoxTicketAmount().click();
         Select selectAmount= new Select(getBoxTicketAmount());
         selectAmount.selectByVisibleText(amount);
     }
     public void clickButtonBookTicket(){
         WebdriverUtils.scrollDowntoElement(getButtonBookTicket());
+        WebdriverUtils.waitTillClickable(getButtonBookTicket(),Constant.SHORT_WAIT);
         getButtonBookTicket().click();
     }
     public void bookTicket(String date,String departStation,String arrStation,String seat,String ticketAmount){
         this.selectDepartDate(date);
         this.selectDepartStation(departStation);
-        try{Thread.sleep(1000);}catch (InterruptedException e){}
+        try{Thread.sleep(Constant.SHORT_SLEEP);}catch (InterruptedException e){
+            Log.error("Interupted Exception");}
         this.selectArriveStation(arrStation);
         this.selectSeatType(seat);
         this.selectTicketAmount(ticketAmount);

@@ -14,15 +14,15 @@ public class TestCase07 extends TestBase {
 
     @Test(dataProvider = "readData", description = "User can create new account")
     public void TC07(Object[] data) {
-        Log.info("TC07-Read data");
+        Log.info("TC07-Go to Register page");
+        homePage.clickOnTabRegister();
+        Log.info("TC07-Create new account");
         String email = DataFaker.generateRandomEmail(data[0].toString());
         String password = data[1].toString();
         String pid = DataFaker.generateString();
-        Log.info("TC07-Create new account");
-        homePage.clickOnTabRegister();
         registerPage.registerNewAccount(email, password, password, pid);
+        Log.info("TC07-Verify message of successful register");
         String actualMessage = registerPage.getTextRegisterSuccesfully();
-        //Verify successful register mesage
         Assert.assertEquals(actualMessage, "You're here", "Message not match");
     }
 }

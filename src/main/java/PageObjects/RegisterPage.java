@@ -59,23 +59,28 @@ public class RegisterPage extends BasePage {
     /*
      * */
     public void enterEmail(String email) {
+        WebdriverUtils.waitTillVisible(getBoxEmail(),Constant.SHORT_WAIT);
         getBoxEmail().sendKeys(email);
     }
 
     public void enterPassword(String password) {
+        WebdriverUtils.waitTillVisible(getBoxPassword(),Constant.SHORT_WAIT);
         getBoxPassword().sendKeys(password);
     }
 
     public void confirmPassword(String password) {
+        WebdriverUtils.waitTillVisible(getBoxConfirmPassword(),Constant.SHORT_WAIT);
         getBoxConfirmPassword().sendKeys(password);
     }
 
     public void enterPIDnumber(String pIDnumber) {
+        WebdriverUtils.waitTillVisible(getBoxPIDnumber(),Constant.SHORT_WAIT);
         getBoxPIDnumber().sendKeys(pIDnumber);
     }
 
     public void clickButtonRegister() {
         WebdriverUtils.scrollDowntoElement(getButtonRegister());
+        WebdriverUtils.waitTillClickable(getButtonRegister(),Constant.SHORT_WAIT);
         getButtonRegister().click();
     }
 

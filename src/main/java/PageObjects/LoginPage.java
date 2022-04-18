@@ -18,15 +18,12 @@ public class LoginPage extends BasePage {
     protected WebElement getBoxEmail() {
         return Constant.DRIVER.findElement(boxEmail);
     }
-
     protected WebElement getBoxPassword() {
         return Constant.DRIVER.findElement(boxPassword);
     }
-
     protected WebElement getButtonLogin() {
         return Constant.DRIVER.findElement(buttonLogin);
     }
-
     protected WebElement getLoginErrorMessage() {
         return Constant.DRIVER.findElement(loginErrorMessage);
     }
@@ -37,6 +34,7 @@ public class LoginPage extends BasePage {
         getBoxEmail().sendKeys(email);
         getBoxPassword().sendKeys(password);
         WebdriverUtils.scrollDowntoElement(getButtonLogin());
+        WebdriverUtils.waitTillClickable(getButtonLogin(),Constant.SHORT_WAIT);
         getButtonLogin().click();
     }
 
@@ -54,7 +52,7 @@ public class LoginPage extends BasePage {
     public String getTxtLoginErrorMsg() {
         String txtErrorMsg = "";
         try {
-            WebdriverUtils.waitTillVisible(getLoginErrorMessage(),5);
+            WebdriverUtils.waitTillVisible(getLoginErrorMessage(), Constant.MEDIUM_WAIT);
             txtErrorMsg = getLoginErrorMessage().getText();
         } catch (NoSuchElementException e) {
             System.out.println("No Login error message found.");

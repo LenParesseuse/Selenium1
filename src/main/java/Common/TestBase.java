@@ -13,10 +13,13 @@ import java.util.List;
 
 public class TestBase {
     @BeforeSuite
-
+    @Parameters ("browser")
+    public void chooseBrowser(@Optional("firefox")String browserName){
+        Constant.BROWSER=browserName;
+    }
     @BeforeMethod
     public void setUp() {
-        WebdriverUtils.initDriver("firefox");
+        WebdriverUtils.initDriver();
         WebdriverUtils.navigateTo(Constant.HOMEPAGEURL);
         WebdriverUtils.maximizeWindow();
     }

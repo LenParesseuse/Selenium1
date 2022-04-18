@@ -43,7 +43,7 @@ public class BasePage {
     public void clickOnTabMyTicket(){getTabMyTicket().click();}
     public Boolean findTabLogOut(){
         try {
-            WebdriverUtils.waitTillVisible(getTabLogout(),5);
+            WebdriverUtils.waitTillVisible(getTabLogout(),Constant.MEDIUM_WAIT);
             return true;}
         catch(NoSuchElementException ex){return false;}
     }

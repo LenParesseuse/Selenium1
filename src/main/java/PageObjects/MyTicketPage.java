@@ -7,14 +7,18 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 public class MyTicketPage extends BasePage {
-    private final By buttonCancel = By.xpath("//input[@value='Cancel']");
 
+    private final By buttonCancel = By.xpath("//input[@value='Cancel']");
+    /*
+     * */
     protected WebElement getButtonCancel() {
         return Constant.DRIVER.findElement(buttonCancel);
     }
-
+    /*
+     * */
     public void cancelTicket() {
         WebdriverUtils.scrollDowntoElement(getButtonCancel());
+        WebdriverUtils.waitTillClickable(getButtonCancel(),Constant.SHORT_WAIT);
         getButtonCancel().click();
     }
 
