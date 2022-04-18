@@ -1,0 +1,28 @@
+package TestCases;
+
+import Common.DataFaker;
+import Common.Log;
+import Common.TestBase;
+import PageObjects.HomePage;
+import PageObjects.RegisterPage;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class TestCase07 extends TestBase {
+    HomePage homePage=new HomePage();
+    RegisterPage registerPage=new RegisterPage();
+
+    @Test(dataProvider = "readData", description = "User can create new account")
+    public void TC07(Object[] data) {
+        Log.info("TC07-Read data");
+        String email = DataFaker.generateRandomEmail(data[0].toString());
+        String password = data[1].toString();
+        String pid = DataFaker.generateString();
+        Log.info("TC07-Create new account");
+        homePage.clickOnTabRegister();
+        registerPage.registerNewAccount(email, password, password, pid);
+        String actualMessage = registerPage.getTextRegisterSuccesfully();
+        //Verify successful register mesage
+        Assert.assertEquals(actualMessage, "You're here", "Message not match");
+    }
+}
